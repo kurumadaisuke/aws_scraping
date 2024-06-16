@@ -1,6 +1,8 @@
 require 'selenium-webdriver'
 require_relative 'aws_calculator'
 require_relative 'ec2'
+require_relative 'nat_gateway'
+require_relative 'fargate'
 
 driver = Selenium::WebDriver.for :chrome
 driver.get 'https://calculator.aws'
@@ -15,9 +17,18 @@ aws_calculator.resion_select_tokyo
 ec2 = EC2.new(driver, wait)
 ec2.configure_ec2_instance
 
-driver.get 'https://calculator.aws/#/estimate'
-save_element = wait.until { driver.find_element(:xpath, "/html/body/div[3]/div/div[2]/div/div/main/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/button") }
-save_element.click
+natgateway = NatGateway.new(driver, wait)
+natgateway.configure_nat_gateway
+
+# fargate = Fargate.new(driver, wait)
+# fargate.configure_fargate
+
+
+
+
+# driver.get 'https://calculator.aws/#/estimate'
+# save_element = wait.until { driver.find_element(:xpath, "/html/body/div[3]/div/div[2]/div/div/main/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/button") }
+# save_element.click
 
 loop do
   sleep(1)
