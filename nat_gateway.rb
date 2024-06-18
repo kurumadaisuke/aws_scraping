@@ -8,7 +8,7 @@ class NatGateway
 
   def configure_nat_gateway
     @driver.get 'https://calculator.aws/#/createCalculator/VPC'
-    sleep(3)
+    sleep(2)
     checkboxes = @wait.until { @driver.find_elements(:xpath, "//input[@class='awsui_native-input_1wepg_1bo9u_116']") }
     @driver.execute_script("arguments[0].click();", checkboxes[0])
     @driver.execute_script("arguments[0].click();", checkboxes[1])
