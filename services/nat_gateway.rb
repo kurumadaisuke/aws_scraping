@@ -1,9 +1,10 @@
 require 'selenium-webdriver'
 
 class NatGateway
-  def initialize(driver, wait)
+  def initialize(driver, wait, natgw_config)
     @driver = driver
     @wait = wait
+    @natgw_config = natgw_config
   end
 
   def configure_nat_gateway
@@ -16,12 +17,12 @@ class NatGateway
     natgw_instances = @wait.until { @driver.find_element(:xpath, "//input[@aria-label='Number of NAT Gateways Enter the amount']") }
     @driver.execute_script("arguments[0].scrollIntoView(true);", natgw_instances)
     natgw_instances.clear
-    natgw_instances.send_keys("2")
+    natgw_instances.send_keys(@natgw_config[:natgw_instances])
 
     traffic_volume = @wait.until { @driver.find_element(:xpath, "//input[@aria-label='Data Processed per NAT Gateway Value']") }
     @driver.execute_script("arguments[0].scrollIntoView(true);", traffic_volume)
     traffic_volume.clear
-    traffic_volume.send_keys("100")
+    traffic_volume.send_keys(@natgw_config[:traffic_volume])
 
     save_element = @wait.until { @driver.find_element(:xpath, "/html/body/div[3]/div/div[3]/div/div[2]/div/div[3]/div/div/div/div[3]/div/button") }
     save_element.click

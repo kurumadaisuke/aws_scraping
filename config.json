@@ -1,0 +1,10 @@
+{
+  "ec2": {
+    "instance_type": "m5.large",
+    "payment": "on-demand"
+  },
+  "natgw": {
+    "natgw_instances": 2,
+    "traffic_volume": 100
+  }
+}
