@@ -4,6 +4,7 @@ require_relative 'ec2'
 require_relative 'nat_gateway'
 require_relative 'fargate'
 require_relative 's3'
+require_relative 'ecr'
 
 driver = Selenium::WebDriver.for :chrome
 driver.get 'https://calculator.aws'
@@ -23,6 +24,9 @@ natgateway.configure_nat_gateway
 
 # s3 = S3.new(driver, wait)
 # s3.configure_s3
+
+ecr = ECR.new(driver, wait)
+ecr.configure_ecr
 
 # fargate = Fargate.new(driver, wait)
 # fargate.configure_fargate
