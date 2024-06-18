@@ -1,15 +1,9 @@
 require 'selenium-webdriver'
-require_relative 'aws_calculator'
-require_relative 'ec2'
-require_relative 'nat_gateway'
-require_relative 'fargate'
-require_relative 's3'
-require_relative 'ecr'
+Dir[File.join(__dir__, 'services', '*.rb')].each { |file| require_relative file }
 
 driver = Selenium::WebDriver.for :chrome
 driver.get 'https://calculator.aws'
 driver.manage.window.maximize
-
 wait = Selenium::WebDriver::Wait.new(timeout: 30)
 
 aws_calculator = AWSCalculator.new(driver, wait)
