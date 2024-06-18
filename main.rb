@@ -16,14 +16,14 @@ aws_calculator = AWSCalculator.new(driver, wait)
 aws_calculator.create_estimate_button_add
 aws_calculator.resion_select_tokyo
 
-# ec2 = EC2.new(driver, wait)
-# ec2.configure_ec2_instance
+ec2 = EC2.new(driver, wait)
+ec2.configure_ec2_instance
 
 natgateway = NatGateway.new(driver, wait)
 natgateway.configure_nat_gateway
 
-# s3 = S3.new(driver, wait)
-# s3.configure_s3
+s3 = S3.new(driver, wait)
+s3.configure_s3
 
 ecr = ECR.new(driver, wait)
 ecr.configure_ecr
@@ -31,9 +31,7 @@ ecr.configure_ecr
 # fargate = Fargate.new(driver, wait)
 # fargate.configure_fargate
 
-driver.get 'https://calculator.aws/#/estimate'
-save_element = wait.until { driver.find_element(:xpath, "/html/body/div[3]/div/div[2]/div/div/main/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/button") }
-save_element.click
+aws_calculator.save
 
 loop do
   sleep(1)

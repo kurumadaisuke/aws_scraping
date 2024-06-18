@@ -13,15 +13,15 @@ class NatGateway
     @driver.execute_script("arguments[0].click();", checkboxes[0])
     @driver.execute_script("arguments[0].click();", checkboxes[1])
 
-    input_element = @wait.until { @driver.find_element(:xpath, "//input[@aria-label='Number of NAT Gateways Enter the amount']") }
-    @driver.execute_script("arguments[0].scrollIntoView(true);", input_element)
-    input_element.clear
-    input_element.send_keys("2")
+    natgw_instances = @wait.until { @driver.find_element(:xpath, "//input[@aria-label='Number of NAT Gateways Enter the amount']") }
+    @driver.execute_script("arguments[0].scrollIntoView(true);", natgw_instances)
+    natgw_instances.clear
+    natgw_instances.send_keys("2")
 
-    input_element = @wait.until { @driver.find_element(:xpath, "//input[@aria-label='Data Processed per NAT Gateway Value']") }
-    @driver.execute_script("arguments[0].scrollIntoView(true);", input_element)
-    input_element.clear
-    input_element.send_keys("100")
+    traffic_volume = @wait.until { @driver.find_element(:xpath, "//input[@aria-label='Data Processed per NAT Gateway Value']") }
+    @driver.execute_script("arguments[0].scrollIntoView(true);", traffic_volume)
+    traffic_volume.clear
+    traffic_volume.send_keys("100")
 
     save_element = @wait.until { @driver.find_element(:xpath, "/html/body/div[3]/div/div[3]/div/div[2]/div/div[3]/div/div/div/div[3]/div/button") }
     save_element.click

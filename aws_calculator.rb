@@ -21,4 +21,10 @@ class AWSCalculator
     resion_name_input_e.send_keys(:arrow_down)
     resion_name_input_e.send_keys(:enter)
   end
+
+  def save
+    @driver.get 'https://calculator.aws/#/estimate'
+    save_calculator_e = @wait.until { @driver.find_element(:xpath, "/html/body/div[3]/div/div[2]/div/div/main/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/div[2]/button") }
+    save_calculator_e.click
+  end
 end
